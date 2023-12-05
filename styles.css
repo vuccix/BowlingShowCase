@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    /* text-decoration: none; */
+}
+
+/* header */
+
+header {
+    /* background-color: #101010; */
+    background: rgb(26,26,26);
+    background: linear-gradient(0deg, rgba(26,26,26,1) 0%, rgba(16,16,16,1) 100%);
+
+    width: 100%;
+    height: 12vh;
+    display: block;
+    box-shadow: 0 0 5px;
+}
+
+.inner-header {
+    width: 80%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.header-logo-container {
+    height: 100%;
+    display: table;
+    float: left;
+}
+
+.header-logo-container h1 {
+    font-family: 'Faster One';
+    color: white;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 60px;
+    font-weight: 400;
+    user-select: none;
+    cursor: pointer;
+}
+
+.header-logo-container h1 a {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 1500px) {
+    .header-logo-container h1 {
+        font-size: 30px;
+    }
+}
+
+/* footer */
+
+.footer {
+    /* background-color: rgb(50, 50, 50); */
+    background: rgb(34,34,34);
+    background: linear-gradient(0deg, rgba(34,34,34,1) 0%, rgba(50,50,50,1) 100%);
+
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    padding: 15px 0;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    margin-top: 50px;
+    z-index: 11;
+    box-shadow: 0 0 5px;
+}
+
+.inner_footer {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+}
+  
+.inner_footer .logo_footer {
+    width: 35%;
+    float: left;
+    height: 100%;
+    display: block;
+}
+  
+.logo_footer h1 {
+    font-family: "Faster One";
+    font-weight: normal;
+    user-select: none;
+    color: #fff;
+    font-weight: normal;
+    font-size: 50px;
+}
+    
+.lower_footer {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    height: 100%;
+}
+  
+.lower_footer .copy {
+    width: 50%;
+    float: left;
+}
+  
+.lower_footer .made-by p {
+    font-family: "Montserrat Alternates";
+    padding-top: 10px;
+    color: white;
+    font-weight: normal;
+    font-size: 18px;
+}
+  
+.lower_footer .made-by {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* body */
+
+body {
+    /* background-color: #3f3f3f; */
+    /*background-color: #1b1b1b;*/
+    background: rgb(79,79,79);
+    background: radial-gradient(circle, rgba(79,79,79,1) 0%, rgba(47,47,47,1) 100%);
+}
+
+.middle {
+    width: 80%;
+    margin: 1% auto;
+    margin-bottom: -1.5%;
+}
+
+.middle h1 {
+    font-family: "Georgia";
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
+
+.middle hr {
+    width: 52%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    margin-top: -2px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info {
+    margin-top: 5%;
+    position: relative;
+    display: block;
+    width: 960px;
+}
+
+#info p {
+    color: white;
+    font-family: "Montserrat Alternates";
+    text-align: justify;
+}

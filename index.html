@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>lmao</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/a994b5a666.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="inner-header">
+          <div class="header-logo-container">
+              <h1>Bowling</h1>
+          </div>
+      </div>
+    </header>
+
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Lazarovi Parťáci: Bowling</div>
+      </div>
+    </div>
+
+    <div id="info" class="middle">
+      <p>
+        Při spuštění hry Vás uvítá stránka hlavního menu hry, na které si můžete nastavit vlastní herní jméno v textovém poli v levém dolním rohu obrazovky, a poté můžete hru spustit. Hra je jednoduchý bowlingový simulátor, ve kterém se snažíte získat co nejvíce bodů a tím porazit soupeře (počítač). Při každém hodu si nejdříve vybíráte pozici koule, poté úhel na jakou stranu chcete kouli vyhodit, a jako poslední sílu hodu. Vše se vybírá pomocí klávesy <b>Enter</b>.
+        <br><br>
+        V každém kole má hráč dva hody, pokud ale v prvním hodu schodí všechny kuželky, tj. získá <i>strike</i>, pak má hod pouze jeden. Následně      ukáže obrazovka ukazující skóre, a poté hraje soupeř.
+        <br><br>
+        Výsledné skóre se v bowlingu počíta dle jistých pravidel. Pokud hráč získá <i>strike</i>, tak se mu ihned nepřičte 10 bodů, ale přičítá se k       skóre z následujících dvou hodů v dalším kole. V případě, že hráč získá <i>spare</i>, tj. v prvním hodu neschodí všehny kuželky, ale       následujícím hodu všechny zbylé kuželky schodí, se k jeho skóre z tohoto kola přičte i skóre z prvního následujícího hodu v       kole. V případě, že hráč v prvním ani druhém hodu všechny kuželky neschodí, přičítá se mu pouze počet schozených kuželek z daného kola.
+      </p>
+    </div>
+
+    <div class="footer">
+      <div class="lower_footer">
+          <div class="made-by">
+              <p id="reniston">Studio Reniston</p>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/bowling webgl.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/bowling webgl.data",
+        frameworkUrl: buildUrl + "/bowling webgl.framework.js",
+        codeUrl: buildUrl + "/bowling webgl.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Lazarovi Partaci: Bowling Boogaloo",
+        productName: "MVT Bowling",
+        productVersion: "0.1 beta prerelease",
+        showBanner: unityShowBanner,
+      };
+
+      // By default Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
+
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+
+    <style>
+      #reniston { font-family: "Faster One"; font-size: 50px; user-select: none; font-weight: 100; }
+    </style>
+  </body>
+</html>
