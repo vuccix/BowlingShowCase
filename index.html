@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>lmao</title>
+    <title>LP Bowling Boogaloo</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://kit.fontawesome.com/a994b5a666.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/a994b5a666.js" crossorigin="anonymous"></script> -->
   </head>
   <body>
     <header>
@@ -30,18 +30,14 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Lazarovi Parťáci: Bowling</div>
+        <div id="unity-build-title">Lazarovi Parťáci: Bowling Boogaloo - Web Edition</div>
       </div>
     </div>
-
+    
     <div id="info" class="middle">
-      <p>
-        Při spuštění hry Vás uvítá stránka hlavního menu hry, na které si můžete nastavit vlastní herní jméno v textovém poli v levém dolním rohu obrazovky, a poté můžete hru spustit. Hra je jednoduchý bowlingový simulátor, ve kterém se snažíte získat co nejvíce bodů a tím porazit soupeře (počítač). Při každém hodu si nejdříve vybíráte pozici koule, poté úhel na jakou stranu chcete kouli vyhodit, a jako poslední sílu hodu. Vše se vybírá pomocí klávesy <b>Enter</b>.
-        <br><br>
-        V každém kole má hráč dva hody, pokud ale v prvním hodu schodí všechny kuželky, tj. získá <i>strike</i>, pak má hod pouze jeden. Následně      ukáže obrazovka ukazující skóre, a poté hraje soupeř.
-        <br><br>
-        Výsledné skóre se v bowlingu počíta dle jistých pravidel. Pokud hráč získá <i>strike</i>, tak se mu ihned nepřičte 10 bodů, ale přičítá se k       skóre z následujících dvou hodů v dalším kole. V případě, že hráč získá <i>spare</i>, tj. v prvním hodu neschodí všehny kuželky, ale       následujícím hodu všechny zbylé kuželky schodí, se k jeho skóre z tohoto kola přičte i skóre z prvního následujícího hodu v       kole. V případě, že hráč v prvním ani druhém hodu všechny kuželky neschodí, přičítá se mu pouze počet schozených kuželek z daného kola.
-      </p>
+        <p>
+            Při spuštění hry Vás uvítá stránka hlavního menu hry, na které si můžete nastavit vlastní herní jméno v textovém poli v levém dolním rohu obrazovky, a poté můžete hru spustit. Hra je jednoduchý bowlingový simulátor, ve kterém se snažíte získat co nejvíce bodů a tím porazit soupeře (počítač). Při každém hodu si nejdříve vybíráte pozici koule, poté úhel na jakou stranu chcete kouli vyhodit, a jako poslední sílu hodu. Vše se vybírá pomocí klávesy <kbd>Enter</kbd>.
+        </p>
     </div>
 
     <div class="footer">
@@ -51,6 +47,12 @@
           </div>
       </div>
     </div>
+    
+    <style>
+        #reniston { font-family: "Faster One"; font-size: 50px; user-select: none; font-weight: 100; }
+        kbd { font-size: large; text-decoration: none;}
+        kbd:hover { text-decoration: underline; cursor: pointer; }
+    </style>
 
     <script>
       var container = document.querySelector("#unity-container");
@@ -85,15 +87,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/bowling webgl.loader.js";
+      var loaderUrl = buildUrl + "/LP Bowling Web.loader.js";
       var config = {
-        dataUrl: buildUrl + "/bowling webgl.data",
-        frameworkUrl: buildUrl + "/bowling webgl.framework.js",
-        codeUrl: buildUrl + "/bowling webgl.wasm",
+        dataUrl: buildUrl + "/LP Bowling Web.data",
+        frameworkUrl: buildUrl + "/LP Bowling Web.framework.js",
+        codeUrl: buildUrl + "/LP Bowling Web.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "Lazarovi Partaci: Bowling Boogaloo",
-        productName: "MVT Bowling",
-        productVersion: "0.1 beta prerelease",
+        companyName: "Studio Reniston",
+        productName: "Lazarovi Paraci Bowling Boogaloo Web Edition",
+        productVersion: "1.0 web release",
         showBanner: unityShowBanner,
       };
 
@@ -144,9 +146,5 @@
       };
       document.body.appendChild(script);
     </script>
-
-    <style>
-      #reniston { font-family: "Faster One"; font-size: 50px; user-select: none; font-weight: 100; }
-    </style>
   </body>
 </html>
